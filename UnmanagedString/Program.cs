@@ -20,6 +20,7 @@ namespace UnmanagedString
         {
             if (args.Length != 0)
                 filePath = args[0].Trim('"');
+            
             while (!File.Exists(filePath))
             {
                 Console.WriteLine("File Path: ");

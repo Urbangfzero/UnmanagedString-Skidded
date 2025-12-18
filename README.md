@@ -85,6 +85,15 @@ Behind the scenes, the native method returns a pointer to raw bytes embedded in 
 
 ---
 
+---
+
+## 🔄 Related Project
+
+- [Un_UnmanagedStrings](https://github.com/TheHellTower/Un_UnmanagedStrings) = A dnlib-based tool that reverses UnmanagedString protections by restoring
+  native-backed strings to regular `ldstr` instructions.  
+
+---
+
 ## 📢 Credits
 
 * [dnlib](https://github.com/0xd4d/dnlib) — .NET Module/Assembly Reader/Writer Library
