@@ -1,6 +1,5 @@
 # UnmanagedString
 
-[![CodeFactor](https://www.codefactor.io/repository/github/thehelltower/UnmanagedString/badge)](https://www.codefactor.io/repository/github/thehelltower/UnmanagedString)
 
 ## 📜 What is UnmanagedString ?
 
@@ -30,71 +29,11 @@ Do **not** use it to:
 
 Always comply with local laws and software licenses.
 
----
 
-## 🎯 Key Features
 
-- ✅ **Pure dnlib implementation**  
-  No ConfuserEx services, no ASMResolver dependency
-
-- ✅ **Native string storage**  
-  Strings are embedded directly in native code, not metadata
-
-- ✅ **x86 and x64 support**  
-  Generates position-independent native stubs for both architectures
-
-- ✅ **Automatic encoding selection**  
-  Uses ASCII when possible, Unicode when required
-
-- ✅ **Correct RVA patching**  
-  Native method entry points are written via `ModuleWriterEvent`
-
-- ✅ **String deduplication**  
-  Identical strings are stored only once
-
-- ✅ **Safe reconstruction**  
-  Uses appropriate `string(char*)` or `string(sbyte*, int, int)` constructors
-
----
-
-## 🔍 Example
-
-**Original:**
-```csharp
-Console.WriteLine("Hello, world!");
-````
-
-**Protected:**
-
-```csharp
-Console.WriteLine(new string(<Module>.00ffc87a1ad544b6a1f00671960148e5()));
-```
-
-Behind the scenes, the native method returns a pointer to raw bytes embedded in the PE file, and the managed string is reconstructed at runtime.
-
----
-
-## 🧪 Testing checklist (before trusting output)
-
-* Run protected binaries on **x86** and **x64** systems
-* Verify UI apps load resources (icons, images, localized strings)
-* Attach a debugger and ensure native method RVAs resolve correctly
-* Test reflection-heavy code (type names, method names, attributes)
-* Validate behavior on large, real-world assemblies
-* Confirm no crashes on startup (`TypeLoadException`, bad entry points)
-
----
-
----
-
-## 🔄 Related Project
-
-- [Un_UnmanagedStrings](https://github.com/TheHellTower/Un_UnmanagedStrings) = A dnlib-based tool that reverses UnmanagedString protections by restoring
-  native-backed strings to regular `ldstr` instructions.  
-
----
 
 ## 📢 Credits
 
 * [dnlib](https://github.com/0xd4d/dnlib) — .NET Module/Assembly Reader/Writer Library
 * [UnmanagedString (MrakDev)](https://github.com/MrakDev/UnmanagedString) — Original ASMResolver-based inspiration
+* [UnmanagedString (TheHellTower)](https://github.com/TheHellTower/UnmanagedString) — Original dnlib-based inspiration

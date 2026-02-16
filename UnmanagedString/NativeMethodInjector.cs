@@ -11,25 +11,11 @@ namespace UnmanagedString
     /// </summary>
     internal sealed class NativeMethodInjector
     {
-        private sealed class Item
-        {
-            public MethodDef Method;
-            public byte[] Code;
-            public MethodBody? Chunk;
-
-            public Item(MethodDef method, byte[] code)
-            {
-                Method = method;
-                Code = code;
-                Chunk = null;
-            }
-        }
-
         private readonly List<Item> _items = new();
 
-        public void Register(MethodDef method, byte[] code) => _items.Add(new Item(method, code));
-
         public void AttachToWriter(ModuleWriterOptions opts) => opts.WriterEvent += OnWriterEvent;
+
+        public void Register(MethodDef method, byte[] code) => _items.Add(new Item(method, code));
 
         private void OnWriterEvent(object? sender, ModuleWriterEventArgs e)
         {
@@ -74,6 +60,20 @@ namespace UnmanagedString
                         }
                         break;
                     }
+            }
+        }
+
+        private sealed class Item
+        {
+            public MethodBody? Chunk;
+            public byte[] Code;
+            public MethodDef Method;
+
+            public Item(MethodDef method, byte[] code)
+            {
+                Method = method;
+                Code = code;
+                Chunk = null;
             }
         }
     }
